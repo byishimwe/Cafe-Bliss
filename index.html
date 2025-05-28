@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Bliss - Your Cozy Coffee Haven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="images/logo.png" type="image/png">
+</head>
+<body class="font-sans text-gray-800 bg-amber-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <i class="fas fa-mug-hot text-amber-600 text-3xl mr-2"></i>
+                    <span class="text-xl font-bold text-amber-800">Café Bliss</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link hover:text-amber-600 transition">Home</a>
+                    <a href="#menu" class="nav-link hover:text-amber-600 transition">Menu</a>
+                    <a href="#about" class="nav-link hover:text-amber-600 transition">About</a>
+                    <a href="#reservation" class="nav-link hover:text-amber-600 transition">Reservation</a>
+                    <a href="#contact" class="nav-link hover:text-amber-600 transition">Contact</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-amber-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4 shadow-lg">
+            <div class="flex flex-col space-y-3 justify-center items-center">
+                <a href="#home" class="nav-link hover:text-amber-600 transition py-2 border-b">Home</a>
+                <a href="#menu" class="nav-link hover:text-amber-600 transition py-2 border-b">Menu</a>
+                <a href="#about" class="nav-link hover:text-amber-600 transition py-2 border-b">About</a>
+                <a href="#reservation" class="nav-link hover:text-amber-600 transition py-2 border-b">Reservation</a>
+                <a href="#contact" class="nav-link hover:text-amber-600 transition py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero min-h-screen flex items-center justify-center text-white pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="floating mb-8">
+                    <i class="fas fa-mug-hot text-6xl text-amber-300"></i>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Welcome to Café Bliss</h1>
+                <p class="text-xl md:text-2xl mb-10">Where every sip tells a story</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#reservation" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                        Reserve a Table
+                    </a>
+                    <a href="#menu" class="bg-transparent hover:bg-white hover:text-amber-800 text-white font-bold py-3 px-8 border-2 border-white rounded-full transition duration-300 transform hover:scale-105">
+                        View Menu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Our Menu</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600">Handcrafted with love using locally sourced ingredients</p>
+            </div>
+            
+            <!-- Menu Tabs -->
+            <div class="flex justify-center mb-12 items-center">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button onclick="filterMenu('all')" class="menu-tab  active px-6 py-2 text-sm font-medium rounded-l-lg border border-amber-500 bg-amber-500 text-white">
+                        All
+                    </button>
+                    <button onclick="filterMenu('coffee')" class="menu-tab px-6 py-2 text-sm font-medium border-t border-b border-amber-500 text-amber-600 hover:bg-amber-50">
+                        Coffee
+                    </button>
+                    <button onclick="filterMenu('tea')" class="menu-tab px-6 py-2 text-sm font-medium border-t border-b border-amber-500 text-amber-600 hover:bg-amber-50">
+                        Tea
+                    </button>
+                    <button onclick="filterMenu('breakfast')" class="menu-tab px-6 py-2 text-sm font-medium border-t border-b border-amber-500 text-amber-600 hover:bg-amber-50">
+                        Breakfast
+                    </button>
+                    <button onclick="filterMenu('dessert')" class="menu-tab px-6 py-2 text-sm font-medium rounded-r-lg border border-amber-500 text-amber-600 hover:bg-amber-50">
+                        Desserts
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="menu-items">
+                <!-- Coffee Items -->
+                <div class="menu-item coffee" data-category="coffee">
+                    <div class="bg-amber-50 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="./images/Espresso.jpg" 
+                                 alt="Espresso" class="menu-img w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-amber-800">Espresso</h3>
+                                <span class="text-lg font-bold text-amber-600">$3.50</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">A concentrated form of coffee served in small, strong shots.</p>
+                            <button onclick="openModal('Espresso', 'A concentrated form of coffee served in small, strong shots. Perfect for a quick energy boost.', '$3.50', './images/Espresso.jpg')" 
+                                    class="text-amber-600 hover:text-amber-800 font-medium flex items-center">
+                                View details <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item coffee" data-category="coffee">
+                    <div class="bg-amber-50 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="./images/Cappuccino.webp" 
+                                 alt="Cappuccino" class="menu-img w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-amber-800">Cappuccino</h3>
+                                <span class="text-lg font-bold text-amber-600">$4.50</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Espresso with steamed milk and a silky layer of foam.</p>
+                            <button onclick="openModal('Cappuccino', 'Espresso with steamed milk and a silky layer of foam. Perfect balance of strong and creamy.', '$4.50', './images/Cappuccino.webp')" 
+                                    class="text-amber-600 hover:text-amber-800 font-medium flex items-center">
+                                View details <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tea Items -->
+                <div class="menu-item tea" data-category="tea">
+                    <div class="bg-amber-50 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                 alt="Chamomile Tea" class="menu-img w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-amber-800">Chamomile Tea</h3>
+                                <span class="text-lg font-bold text-amber-600">$3.00</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Herbal infusion made from dried chamomile flowers.</p>
+                            <button onclick="openModal('Chamomile Tea', 'Herbal infusion made from dried chamomile flowers. Known for its calming properties and delicate floral aroma.', '$3.00', 'https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')" 
+                                    class="text-amber-600 hover:text-amber-800 font-medium flex items-center">
+                                View details <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Breakfast Items -->
+                <div class="menu-item breakfast" data-category="breakfast">
+                    <div class="bg-amber-50 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80" 
+                                 alt="Avocado Toast" class="menu-img w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-amber-800">Avocado Toast</h3>
+                                <span class="text-lg font-bold text-amber-600">$8.50</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Sourdough bread topped with smashed avocado, cherry tomatoes, and feta.</p>
+                            <button onclick="openModal('Avocado Toast', 'Sourdough bread topped with smashed avocado, cherry tomatoes, feta cheese, and a drizzle of olive oil. Served with a side of mixed greens.', '$8.50', 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80')" 
+                                    class="text-amber-600 hover:text-amber-800 font-medium flex items-center">
+                                View details <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dessert Items -->
+                <div class="menu-item dessert" data-category="dessert">
+                    <div class="bg-amber-50 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+                                 alt="Tiramisu" class="menu-img w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-amber-800">Tiramisu</h3>
+                                <span class="text-lg font-bold text-amber-600">$6.50</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Classic Italian dessert with layers of coffee-soaked ladyfingers.</p>
+                            <button onclick="openModal('Tiramisu', 'Classic Italian dessert with layers of coffee-soaked ladyfingers and a whipped mixture of eggs, sugar, and mascarpone cheese, flavored with cocoa.', '$6.50', 'https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')" 
+                                    class="text-amber-600 hover:text-amber-800 font-medium flex items-center">
+                                View details <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item dessert" data-category="dessert">
+                    <div class="bg-amber-50 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2094&q=80" 
+                                 alt="Chocolate Cake" class="menu-img w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-amber-800">Chocolate Cake</h3>
+                                <span class="text-lg font-bold text-amber-600">$5.50</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Rich, moist chocolate cake with chocolate ganache.</p>
+                            <button onclick="openModal('Chocolate Cake', 'Rich, moist chocolate cake layered with chocolate ganache and topped with fresh berries. A chocolate lover\'s dream.', '$5.50', 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2094&q=80')" 
+                                    class="text-amber-600 hover:text-amber-800 font-medium flex items-center">
+                                View details <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                    View Full Menu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-amber-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" 
+                             alt="Café Interior" class="rounded-lg shadow-xl w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg hidden md:block">
+                            <div class="flex items-center">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-award text-amber-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-amber-800">Best Café 2023</p>
+                                    <p class="text-sm text-gray-600">Local Food Awards</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-6">Our Story</h2>
+                    <div class="w-24 h-1 bg-amber-500 mb-6"></div>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2010, Café Bliss began as a small coffee cart with a big dream - to create a community space where people could connect over exceptional coffee and food. What started as a passion project between two friends has grown into a beloved neighborhood institution.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        We pride ourselves on sourcing the finest organic, fair-trade beans and partnering with local bakeries and farms to bring you fresh, seasonal ingredients. Every cup we serve is crafted with care, and every bite tells a story of quality and passion.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-seedling text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-800 mb-1">Sustainable</h4>
+                                <p class="text-sm text-gray-600">Ethically sourced ingredients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-heart text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-800 mb-1">Handcrafted</h4>
+                                <p class="text-sm text-gray-600">Made with love daily</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-users text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-800 mb-1">Community</h4>
+                                <p class="text-sm text-gray-600">Supporting local artists</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-leaf text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-800 mb-1">Eco-Friendly</h4>
+                                <p class="text-sm text-gray-600">Compostable packaging</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                        Visit Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Make a Reservation</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600">Book your table in advance to ensure the best experience</p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto bg-amber-50 rounded-xl shadow-lg p-8">
+                <form id="reservation-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="name-error">Please enter your name</p>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="email-error">Please enter a valid email</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="date" class="block text-gray-700 font-medium mb-2">Date</label>
+                            <input type="date" id="date" name="date" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                            <p class="text-red-500 text-sm mt-1 hidden" id="date-error">Please select a date</p>
+                        </div>
+                        <div>
+                            <label for="time" class="block text-gray-700 font-medium mb-2">Time</label>
+                            <select id="time" name="time" required 
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                                <option value="">Select time</option>
+                                <option value="08:00">8:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                            </select>
+                            <p class="text-red-500 text-sm mt-1 hidden" id="time-error">Please select a time</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="guests" class="block text-gray-700 font-medium mb-2">Number of Guests</label>
+                            <select id="guests" name="guests" required 
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                                <option value="">Select guests</option>
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                                <option value="5">5 people</option>
+                                <option value="6">6 people</option>
+                                <option value="7">7 people</option>
+                                <option value="8">8+ people</option>
+                            </select>
+                            <p class="text-red-500 text-sm mt-1 hidden" id="guests-error">Please select number of guests</p>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="special-requests" class="block text-gray-700 font-medium mb-2">Special Requests</label>
+                        <textarea id="special-requests" name="special-requests" rows="3" 
+                                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition"></textarea>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                            Reserve Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-amber-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">What Our Customers Say</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600">Don't just take our word for it - hear from our happy customers</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-800">Sarah J.</h4>
+                            <div class="flex text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "The best cappuccino in town! I come here every weekend to work on my novel. The atmosphere is perfect - cozy but not too quiet."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-800">Michael T.</h4>
+                            <div class="flex text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "As a coffee connoisseur, I'm very particular about my brew. Café Bliss never disappoints. Their single-origin pour-over is exceptional."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma R." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-800">Emma R.</h4>
+                            <div class="flex text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "The avocado toast is to die for! I love that they use locally sourced ingredients. Plus, the staff is always so friendly and welcoming."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Events & Specials</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600">Join us for these special events and limited-time offers</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-amber-50 rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Live Music Night" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <span class="inline-block bg-amber-600 text-white text-xs px-3 py-1 rounded-full mb-2">Every Friday</span>
+                                <h3 class="text-xl font-bold text-amber-800">Live Music Night</h3>
+                            </div>
+                            <span class="text-amber-600 font-bold">Free</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Enjoy live acoustic performances from local artists while sipping on our signature cocktails and coffee creations.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>7:00 PM - 10:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="bg-amber-50 rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Latte Art Workshop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <span class="inline-block bg-amber-600 text-white text-xs px-3 py-1 rounded-full mb-2">June 15</span>
+                                <h3 class="text-xl font-bold text-amber-800">Latte Art Workshop</h3>
+                            </div>
+                            <span class="text-amber-600 font-bold">$25</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Learn the secrets of perfect latte art from our master barista. Includes hands-on practice and all materials.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>2:00 PM - 4:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="bg-amber-50 rounded-xl overflow-hidden shadow-lg hidden lg:block">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/Summer Berry Delight.jpg" 
+                             alt="Seasonal Special" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <span class="inline-block bg-amber-600 text-white text-xs px-3 py-1 rounded-full mb-2">Limited Time</span>
+                                <h3 class="text-xl font-bold text-amber-800">Summer Berry Delight</h3>
+                            </div>
+                            <span class="text-amber-600 font-bold">$6.50</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Our new seasonal special featuring fresh local berries, homemade whipped cream, and a hint of lavender.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>Available until August 31</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-amber-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">Visit Us</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600">We'd love to hear from you. Come by or get in touch!</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-xl shadow-lg p-8 h-full">
+                        <h3 class="text-3xl font-bold text-amber-800 mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-amber-800 text-2xl mb-1">Address</h4>
+                                    <p class="text-gray-600 mb-2">123 Coffee Lane, Brewville, CA 90210</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-amber-800 text-2xl mb-1">Phone</h4>
+                                    <p class="text-gray-600 mb-2">(555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-amber-800 text-2xl mb-1">Email</h4>
+                                    <p class="text-gray-600 mb-2">hello@cafebliss.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-amber-800 text-2xl mb-1">Hours</h4>
+                                    <p class="text-gray-600 mb-8">
+                                        <span class="font-medium" id="today-hours">Monday - Friday:</span> 7:00 AM - 7:00 PM<br>
+                                        <span>Saturday - Sunday:</span> 8:00 AM - 6:00 PM
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-amber-800 mb-4 text-2xl">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/prince_arnaud_64/" class="bg-amber-100 hover:bg-amber-200 text-amber-600 p-3 rounded-lg transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=61575239453887" class="bg-amber-100 hover:bg-amber-200 text-amber-600 p-3 rounded-lg transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://x.com/@Ishkpro" class="bg-amber-100 hover:bg-amber-200 text-amber-600 p-3 rounded-lg transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-xl shadow-lg p-8 h-full">
+                        <h3 class="text-2xl font-bold text-amber-800 mb-6">Send Us a Message</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="contact-name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                <input type="text" id="contact-name" name="contact-name" required 
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="contact-email" name="contact-email" required 
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <input type="text" id="contact-subject" name="contact-subject" 
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="contact-message" name="contact-message" rows="4" required 
+                                          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 transition"></textarea>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map -->
+            <div class="mt-12 rounded-xl overflow-hidden shadow-lg">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215076934766!2d-73.9878449242396!3d40.74844097138996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1687893120249!5m2!1sen!2sus" 
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-amber-800 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">Join Our Coffee Club</h2>
+                <p class="mb-8 text-amber-100">Subscribe to our newsletter for exclusive offers, events, and coffee tips delivered to your inbox.</p>
+                
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" required 
+                           class="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-300 text-gray-800">
+                    <button type="submit" class="bg-amber-600 hover:bg-amber-700 font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                        Subscribe
+                    </button>
+                </form>
+                
+                <p class="mt-4 text-sm text-amber-200">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 text-center md:grid-cols-4 gap-8">
+                <div class="text-left">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mug-hot text-amber-300 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">Café Bliss</span>
+                    </div>
+                    <p class="text-amber-200 mb-4">
+                        Where every sip tells a story. Serving exceptional coffee and creating community since 2010.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/prince_arnaud_64/" class="text-amber-300 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61575239453887" class="text-amber-300 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/@Ishkpro" class="text-amber-300 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-left">
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-amber-200 hover:text-white transition">Home</a></li>
+                        <li><a href="#menu" class="text-amber-200 hover:text-white transition">Menu</a></li>
+                        <li><a href="#about" class="text-amber-200 hover:text-white transition">About Us</a></li>
+                        <li><a href="#reservation" class="text-amber-200 hover:text-white transition">Reservations</a></li>
+                        <li><a href="#contact" class="text-amber-200 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-amber-200">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-sm"></i>
+                            <span>123 Coffee Lane, Brewville, CA 90210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i onlayne class="fas fa-phone-alt mr-2 text-sm"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-sm"></i>
+                            <span>hello@cafebliss.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Hours</h4>
+                    <ul class="space-y-2 text-amber-200">
+                        <li class="flex justify-between">
+                            <span>Monday - Friday</span>
+                            <span>7AM - 7PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Saturday</span>
+                            <span>8AM - 6PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>8AM - 6PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-amber-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-amber-200 mb-4 md:mb-0">© <span id="currentYear"></span> Café Bliss. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-amber-200 hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-amber-200 hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Reservation Success Modal -->
+    <div id="reservation-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="bg-green-100 p-3 rounded-full inline-block mb-4">
+                    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Reservation Confirmed!</h3>
+                <p class="text-gray-600 mb-6" id="reservation-details">Your table has been successfully reserved.</p>
+                <button onclick="closeModal('reservation-modal')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded-full transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Item Modal -->
+    <div id="menu-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold text-amber-800" id="modal-item-name">Item Name</h3>
+                <button onclick="closeModal('menu-modal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="h-48 overflow-hidden rounded-lg mb-6">
+                <img id="modal-item-image" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-lg font-bold text-amber-600" id="modal-item-price">$0.00</span>
+                <button class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full text-sm transition">
+                    Add to Order
+                </button>
+            </div>
+            
+            <p class="text-gray-600 mb-6" id="modal-item-desc">Item description goes here.</p>
+            
+            <div class="bg-amber-50 p-4 rounded-lg">
+                <h4 class="font-bold text-amber-800 mb-2">Nutritional Info</h4>
+                <div class="grid grid-cols-3 gap-2 text-sm">
+                    <div>
+                        <span class="font-medium">Calories</span>
+                        <p>250 kcal</p>
+                    </div>
+                    <div>
+                        <span class="font-medium">Protein</span>
+                        <p>5g</p>
+                    </div>
+                    <div>
+                        <span class="font-medium">Carbs</span>
+                        <p>30g</p>
+                    </div>
+                    <div>
+                        <span class="font-medium">Fat</span>
+                        <p>12g</p>
+                    </div>
+                    <div>
+                        <span class="font-medium">Sugar</span>
+                        <p>18g</p>
+                    </div>
+                    <div>
+                        <span class="font-medium">Fiber</span>
+                        <p>2g</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Success Modal -->
+    <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="bg-green-100 p-3 rounded-full inline-block mb-4">
+                    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Message Sent!</h3>
+                <p class="text-gray-600 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
+                <button onclick="closeModal('contact-modal')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded-full transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

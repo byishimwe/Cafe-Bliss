@@ -1,0 +1,36 @@
+/* Custom CSS for elements that need more specific styling */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.menu-item:hover .menu-img {
+    transform: scale(1.05);
+}
+
+.menu-img {
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.2);
+}
+
+.active-nav {
+    color: #d1a054;
+    font-weight: 600;
+}
+
+/* Animation for the coffee cup in hero */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
