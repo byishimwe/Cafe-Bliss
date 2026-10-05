@@ -1,0 +1,17 @@
+# Browser review captures are local deliverables, not site assets.
+/review/
+node_modules/
+/.chrome-test-profile/
+/tests/
+
+# Logs & temp files
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/
+.idea/

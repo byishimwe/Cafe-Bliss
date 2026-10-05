@@ -73,7 +73,12 @@ function initNavigation() {
   function update() {
     const offset = header.offsetHeight + 90;
     let active = 'home';
-    for (const section of sections) if (section.getBoundingClientRect().top <= offset) active = section.id;
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
+    if (atBottom) {
+      active = 'contact';
+    } else {
+      for (const section of sections) if (section.getBoundingClientRect().top <= offset) active = section.id;
+    }
     header.classList.toggle('is-scrolled', window.scrollY > 12);
     for (const link of links) {
       if (link.hash === `#${active}`) link.setAttribute('aria-current', 'location');
@@ -118,8 +123,13 @@ function initMenu() {
   const fullMenu = $('#full-menu-content');
   for (const [category, title] of Object.entries(CATEGORIES)) {
     const section = element('section', 'full-menu-category');
-    const heading = element('h3', '', title);
+    const heading = element('h3', '');
     heading.id = `full-menu-${category}`;
+    if (title.includes('&')) {
+      heading.innerHTML = title.replace('&', '<span class="amp" aria-hidden="true">&amp;</span><span class="sr-only">and</span>');
+    } else {
+      heading.textContent = title;
+    }
     section.setAttribute('aria-labelledby', heading.id);
     section.append(heading);
     for (const item of MENU.filter(item => item.category === category)) {
@@ -142,10 +152,21 @@ function initDialog() {
   opener.addEventListener('click', () => {
     previousFocus = document.activeElement;
     dialog.showModal();
+    const body = dialog.querySelector('.dialog-body');
+    if (body) body.scrollTop = 0;
     dialog.scrollTop = 0;
     document.body.classList.add('dialog-open');
   });
   $('.dialog-close', dialog).addEventListener('click', () => dialog.close());
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      dialog.close();
+    }
+  });
+  dialog.addEventListener('cancel', () => {
+    document.body.classList.remove('dialog-open');
+  });
   let startedOutside = false;
   const outside = event => {
     const box = dialog.getBoundingClientRect();
